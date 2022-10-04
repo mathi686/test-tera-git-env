@@ -83,4 +83,3 @@ resource "aws_instance" "public" {
     name = "public"
   }
 }
-tet
