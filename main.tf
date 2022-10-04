@@ -83,4 +83,3 @@ resource "aws_instance" "public" {
     name = "public"
   }
 }
-123464846464464464464646446446446464
