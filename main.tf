@@ -1,7 +1,7 @@
 provider "aws" {
   region     = "us-east-2"
-  access_key = "AKIASZTTQPYFFCN7IVPS"
-  secret_key = "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"
+  access_key = "AKIASZTTQPYFA3GUI2XV"
+  secret_key = "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"
 }
 resource "aws_vpc" "private-sub-testing" {
   cidr_block           = "${var.Vpc-CIDIR}"
@@ -83,4 +83,3 @@ resource "aws_instance" "public" {
     name = "public"
   }
 }
-1
