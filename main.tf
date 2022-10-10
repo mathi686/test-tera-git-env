@@ -1,7 +1,7 @@
 provider "aws" {
   region     = "us-east-2"
-  access_key = "AKIASZTTQPYFA3GUI2XV"
-  secret_key = "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"
+  access_key = "AKIASZTTQPYFNPGWZXS4"
+  secret_key = "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"
 }
 resource "aws_vpc" "private-sub-testing" {
   cidr_block           = "${var.Vpc-CIDIR}"
@@ -47,28 +47,9 @@ resource "aws_route_table_association" "rtprivate" {
   route_table_id = aws_route_table.private.id
   subnet_id      = aws_subnet.PRIVATE.id
 }
-resource "aws_security_group" "my-sec-gp" {
-  name   = "new-sec-gp"
-  vpc_id = aws_vpc.private-sub-testing.id
-  ingress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port   = 80
-    protocol    = "tcp"
-    to_port     = 80
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+module "sec-gp" {
+  source = "./modules/security_moudule.tf"
+  depends_on = [a]
 }
 resource "aws_instance" "public" {
   ami                         = "ami-0568773882d492fc8"
@@ -81,5 +62,16 @@ resource "aws_instance" "public" {
   user_data                   = "${var.Docker-install}"
   tags = {
     name = "public"
+      }
+}
+module "website_s3_bucket" {
+  source = "./modules"
+bucket_name = "ookey2"
+
+  tags = {
+    Terraform   = "true"
+    Environment = "dev"
   }
 }
+
+

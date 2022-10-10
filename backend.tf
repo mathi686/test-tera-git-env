@@ -3,8 +3,9 @@ terraform {
     bucket = "ookey"
     key = "mathi/terraform.tfstate"
     region = "us-east-2"
-    access_key = "AKIASZTTQPYFA3GUI2XV"
-    secret_key = "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"
+    access_key = "AKIASZTTQPYFNPGWZXS4"
+    secret_key = "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"
     dynamodb_table = "ookey"
   }
 }
+
